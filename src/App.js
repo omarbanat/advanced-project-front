@@ -9,12 +9,18 @@ import ClassesSections from './pages/ClassesSections';
 import CourseEnrollments from './pages/CourseEnrollments';
 import Courses from './pages/Courses';
 import Users from './pages/Users';
+import LoginPage from './components/loginPage/LoginPage';
+import Register from './components/registerPage/Register';
 
 function App() {
   return (
      <BrowserRouter>
-     <AdminSideBar>
+     
      <Routes>
+     <Route path='/login' element={<LoginPage />} />
+     <Route path='/register' element={<Register />} />
+
+     <Route path='/' element={<AdminSideBar />} />
       <Route path='/announcements' element={<Announcements />} />
       <Route path='/assignments' element={<Assignments />} />
       <Route path='/attendances' element={<Attendances />} />
@@ -23,7 +29,6 @@ function App() {
       <Route path='/courses' element={<Courses />} />
       <Route path='/users' element={<Users />} />
      </Routes>
-     </AdminSideBar>
      </BrowserRouter>
   )
 }

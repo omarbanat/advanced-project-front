@@ -8,7 +8,7 @@ function Users() {
     Axios.get("http://127.0.0.1:8000/api/user/getAll").then(
       (response) => {
         console.log(response.data); // Log the response data to the console
-        if (Array.isArray(response.data.message)) {
+        if (response) {
           setUsers(response.data.message);
         } else {
           console.log("Response data is not an array:", response.data);
