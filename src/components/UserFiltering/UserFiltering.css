@@ -1,0 +1,29 @@
+.user-filtering__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 5px solid #d9d9d9;
+}
+
+.user-filtering__btn-container {
+  display: flex;
+  justify-content: center;
+  background-color: #1976d2;
+  width: 100px;
+  border-radius: 5px;
+  height: 40px;
+  border: white;
+  margin-left: 20px;
+}
+
+.user-filtering__add-user {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  font-size: 20px;
+}
+
+.user-filtering__add-user:focus {
+  outline: none;
+}

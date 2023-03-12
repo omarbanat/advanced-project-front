@@ -1,0 +1,8 @@
+.admin-users__table {
+  text-align: center;
+}
+
+.admin-users__table__edit-delete {
+  display: flex;
+  justify-content: space-around;
+}
