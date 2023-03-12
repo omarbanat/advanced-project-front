@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { MDBDataTable } from 'mdbreact';
 import 'mdbreact/dist/css/mdb.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -7,8 +9,21 @@ import deleteIcon from '../../assets/delete.svg';
 import restoreIcon from '../../assets/restore.svg';
 
 import './AdminUsers.css';
+import { useState } from 'react';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 const AdminUsers = ({ users, filterBy }) => {
+  const [APIMessage, setAPIMessage] = useState('');
+
+  const deleteUser = async (id) => {
+    const response = await axios.delete(`${API_URL}/user/delete/${id}`);
+    setAPIMessage(response.data.message);
+    setTimeout(() => {
+      setAPIMessage('');
+    }, [2000]);
+  };
+
   const allUsers =
     users &&
     users.map((el, idx) => {
@@ -24,7 +39,7 @@ const AdminUsers = ({ users, filterBy }) => {
             <img
               src={deleteIcon}
               alt="delete"
-              onClick={() => console.log('DELETE: ', idx)}
+              onClick={() => deleteUser(el.id)}
             />
             <img
               src={restoreIcon}
@@ -89,6 +104,9 @@ const AdminUsers = ({ users, filterBy }) => {
 
   return (
     <div>
+      <div className={`${APIMessage ? 'api-call-response-message ' : ''}`}>
+        {APIMessage}
+      </div>
       <MDBDataTable
         striped
         bordered
