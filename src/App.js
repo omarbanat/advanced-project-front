@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import AdminSideBar from "./components/Admin-SideBar"
+// import AdminSideBar from "./components/Admin-SideBar"
 import { BrowserRouter, Route , Routes } from 'react-router-dom';
 import Announcements from './pages/Announcements';
 import Assignments from './pages/Assignments';
@@ -9,11 +9,14 @@ import ClassesSections from './pages/ClassesSections';
 import CourseEnrollments from './pages/CourseEnrollments';
 import Courses from './pages/Courses';
 import Users from './pages/Users';
+import AliCourses from './pages/usercourses';
+import AliInrollment from './pages/userinrollment';
+
 
 function App() {
   return (
      <BrowserRouter>
-     <AdminSideBar>
+     {/* <AdminSideBar> */}
      <Routes>
       <Route path='/announcements' element={<Announcements />} />
       <Route path='/assignments' element={<Assignments />} />
@@ -22,8 +25,10 @@ function App() {
       <Route path='/enrollments' element={<CourseEnrollments />} />
       <Route path='/courses' element={<Courses />} />
       <Route path='/users' element={<Users />} />
+      <Route path='/usercourses' element={<AliCourses />} />
+      <Route path='/userinrollment' element={<AliInrollment />} />
      </Routes>
-     </AdminSideBar>
+     {/* </AdminSideBar> */}
      </BrowserRouter>
   )
 }
