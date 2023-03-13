@@ -6,7 +6,6 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 
 import editIcon from '../../assets/edit.svg';
 import deleteIcon from '../../assets/delete.svg';
-import restoreIcon from '../../assets/restore.svg';
 
 import './AdminUsers.css';
 import { useState } from 'react';
@@ -15,6 +14,12 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const AdminUsers = ({ users, filterBy }) => {
   const [APIMessage, setAPIMessage] = useState('');
+
+  const editUser = async (id) => {
+    const response = await axios.put(`${API_URL}/user/edit/${id}`, {
+      
+    });
+  };
 
   const deleteUser = async (id) => {
     const response = await axios.delete(`${API_URL}/user/delete/${id}`);
@@ -31,20 +36,11 @@ const AdminUsers = ({ users, filterBy }) => {
         ...el,
         editDelete: (
           <div className="admin-users__table__edit-delete">
-            <img
-              src={editIcon}
-              alt="edit"
-              onClick={() => console.log('EDIT: ', idx)}
-            />
+            <img src={editIcon} alt="edit" onClick={() => editUser(idx)} />
             <img
               src={deleteIcon}
               alt="delete"
               onClick={() => deleteUser(el.id)}
-            />
-            <img
-              src={restoreIcon}
-              alt="restore"
-              onClick={() => console.log('RESTORE: ', idx)}
             />
           </div>
         ),
@@ -93,7 +89,7 @@ const AdminUsers = ({ users, filterBy }) => {
         width: 300,
       },
       {
-        label: 'Edit - Delete - Restore',
+        label: 'Edit - Delete',
         field: 'editDelete',
         sort: 'asc',
         width: 300,
