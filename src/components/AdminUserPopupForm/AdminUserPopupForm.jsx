@@ -11,6 +11,7 @@ const AdminUserPopupForm = ({ setShowPopup }) => {
     lName: '',
     email: '',
     DOB: '',
+    password: '123456789',
     phoneNumber: '',
     gender: 'male',
     role: 'admin',
