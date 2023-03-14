@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import './Attendances.css';
 import AdminAttendanceTable from '../components/AdminAttendanceTable';
 import DropDownToggle from '../components/DropDownTogle';
@@ -19,7 +20,7 @@ function Attendances() {
 
   const years = ['2023', '2022', '2021', '2020', '2019', '2018'];
 
-  const filteredData =
+  let filteredData =
     data &&
     data
       .filter((data) =>
@@ -27,7 +28,10 @@ function Attendances() {
           ? data.fName === username.fName && data.lName === username.lName
           : data
       )
-      .filter((data) => year && data.date.slice(0, 4) === year);
+      .filter((data) => (year ? data.date.slice(0, 4) === year : data))
+      .filter((data) =>
+        month ? format(new Date(data.date), 'LLLL') === month : data
+      );
 
   const fetchData = async () => {
     const coursesResponse = await axios.get(`${API_URL}/courses/get`);

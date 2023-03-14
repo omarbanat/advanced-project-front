@@ -6,15 +6,6 @@ import 'mdbreact/dist/css/mdb.css';
 import './AdminAttendanceTable.css';
 
 const AdminAttendanceTable = ({ filteredData }) => {
-  // filteredData &&
-  // filteredData.map((el) => {
-  // const datess = el.all_dates.split(',');
-  // const attends = el.all_attendances.split(',');
-  // return datess.map((el, idx) => {
-  // const checc = { date: el, status: attends[idx] };
-  // return checc;
-  // });
-
   const data = {
     columns: [
       {
@@ -25,7 +16,7 @@ const AdminAttendanceTable = ({ filteredData }) => {
       },
       {
         label: 'Status',
-        field: 'status',
+        field: 'attendanceType',
         sort: 'asc',
         width: 300,
       },
