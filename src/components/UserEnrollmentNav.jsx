@@ -1,7 +1,7 @@
-import "./UserInrollmentNav.css"
+import "./UserEnrollmentNav.css"
 import iconsbell from '../assets/notification.svg'
 import iconsdoor from '/home/alihomsi/Documents/projects/advanced project frontend/advanced-project-frontend/src/assets/logout.svg'
-const UserInrollmentNav = () => {
+const UserEnrollmentNav = () => {
   return (
     <div className="top-bar">
     <div className="username">
@@ -26,4 +26,4 @@ const UserInrollmentNav = () => {
   )
 }
 
-export default UserInrollmentNav
+export default UserEnrollmentNav

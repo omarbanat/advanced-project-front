@@ -1,7 +1,7 @@
-import './UserInrollmentCards.css'
+import './UserEnrollmentCards.css'
 import cardlogo from '../assets/cardimg.png'
 
-const InrollmentCards = () =>{
+const EnrollmentCards = () =>{
     return(
         <div className="card-grid">
   <div className="card">
@@ -31,4 +31,4 @@ const InrollmentCards = () =>{
 </div>
     )
 }
-export default InrollmentCards
+export default EnrollmentCards

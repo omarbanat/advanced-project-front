@@ -10,7 +10,7 @@ import CourseEnrollments from './pages/CourseEnrollments';
 import Courses from './pages/Courses';
 import Users from './pages/Users';
 import AliCourses from './pages/usercourses';
-import AliInrollment from './pages/userinrollment';
+import AliEnrollment from './pages/userenrollment';
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Route path='/courses' element={<Courses />} />
       <Route path='/users' element={<Users />} />
       <Route path='/usercourses' element={<AliCourses />} />
-      <Route path='/userinrollment' element={<AliInrollment />} />
+      <Route path='/userenrollment' element={<AliEnrollment />} />
      </Routes>
      {/* </AdminSideBar> */}
      </BrowserRouter>
