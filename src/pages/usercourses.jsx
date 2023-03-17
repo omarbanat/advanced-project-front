@@ -1,32 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import UserCoursesNav from '../components/UserCoursesNav.jsx';
-import UserCoursesCards from '../components/CourseCards.jsx';
+import CourseCard from '../components/CourseCards.jsx';
 import axios from 'axios';
 
-const AliCourses = () => {
-  const [courses, setCourses] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/courses')
-      .then(res => {
-        setCourses(res.data.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+const AliCourses = () => {
+  const [course, setCourses] = useState([]);
+
+  const getAllCourses = ()=>
+  axios
+  .get("http://localhost:8000/api/courses/get")
+  .then((res)=>{
+    setCourses(res.data.data)
+    console.log(res.data.data)
+  })
+  .catch((e)=>console.error(`error:{${e}}`))
+
+  const courseCard = course.map((subject)=>{
+    return(
+      <CourseCard 
+      key={subject.id}
+      title={subject.title}
+      description={subject.description}
+      durationByDays={subject.durationByDays}
+      />
+    )
+  })
+
+  useEffect(()=>{
+    getAllCourses();
+  },[])
 
   return (
     <div>
       <UserCoursesNav />
-      <UserCoursesCards courses={courses} />
-      <UserCoursesCards courses={courses} />
-      <UserCoursesCards courses={courses} />
-      <UserCoursesCards courses={courses} />
-      <UserCoursesCards courses={courses} />
-      <UserCoursesCards courses={courses} />
-      <UserCoursesCards courses={courses} />
+      <div className='cardsblabla'>
+      {course.map((each , key)=>(
+        <CourseCard
+        key={key}
+        course={each}/>
+      ))}
+      </div>
+      
+      
     </div>
   )
 }
 
 export default AliCourses
-

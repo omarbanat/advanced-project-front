@@ -11,7 +11,7 @@ const UserEnrollmentNav = () => {
         <nav className="nav">
             <ul>
               <li><a href="/usercourses">Courses</a></li>
-              <li><a href="/userinrollment">Enrolled Courses</a></li>
+              <li><a href="/userEnrollment">Enrolled Courses</a></li>
               <li><a href="students attendance.html">Attendance
             </a></li>
               
