@@ -1,7 +1,11 @@
 import './CourseCards.css'
 import cardlogo from '../assets/cardimg.png'
+// import axios from 'axios'
 
+// function b3ate(){
 
+//   axios.post()
+// }
 
 const CourseCard = ({course}) =>{
     return(
