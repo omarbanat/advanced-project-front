@@ -48,10 +48,13 @@ export default function AddCourseCard(props) {
       .post(`${API_URL}/courses/add`, formData)
       .then((response) => {
         console.log(response);
+        props.render()
+       
       })
       .catch((error) => {
         console.log(error);
       });
+
   };
 
   return (

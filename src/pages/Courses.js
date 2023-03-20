@@ -12,6 +12,7 @@ function Courses() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [courseCards, setCourseCards] = useState([]);
   const [courseCycle, setCourseCycle] = useState([]);
+  const [render,setRender] = useState(false)
 
   const handleDeleteCard = (id) => {
     const dl = window.confirm('Are you sure you want to delete this course?');
@@ -38,11 +39,15 @@ function Courses() {
   };
   const [courses, setCourses] = useState([]);
 
+  const rerender = () => {
+    setRender(prev => !prev)
+  }
+
   useEffect(() => {
     Axios.get(`${API_URL}/courses/get`).then(
       (response) => {
         if (response.data) {
-          console.log('get', response);
+          console.log(response);
           setCourses(response.data.data);
         } else {
           console.log('Response data is not an array:', response.data);
@@ -52,7 +57,7 @@ function Courses() {
         console.log(error);
       }
     );
-  }, [courseCards, API_URL]);
+  }, [render]);
 
   useEffect(() => {
     Axios.get(`${API_URL}/courseCycle/get`).then(
@@ -68,7 +73,7 @@ function Courses() {
         console.log(error);
       }
     );
-  }, [API_URL]);
+  }, [render]);
 
   // const barmeTenye = courseCycle.map((item) => {
   //   return {
@@ -113,6 +118,7 @@ function Courses() {
         durationByDays={item.durationByDays}
         deleteCard={() => handleDeleteCard(item.id)}
         dates={dateInputs}
+        render={rerender}
       />
     );
   });
@@ -134,7 +140,7 @@ function Courses() {
       >
         Add new course
       </Button>
-      {zid && <AddCourseCard close={closeAddCourse} />}
+      {zid && <AddCourseCard close={closeAddCourse} render={rerender}/>}
       <div className="course-card">{brom}</div>
     </>
   );

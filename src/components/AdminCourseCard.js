@@ -58,6 +58,7 @@ export default function CourseCard(props) {
       .post(`${API_URL}/courseCycle/add`, formData)
       .then((response) => {
         console.log(response);
+        props.render();
       })
       .catch((error) => {
         console.log(error);
@@ -228,16 +229,20 @@ export default function CourseCard(props) {
           Add Course Timing
         </Button>
       ) : (
-        <div
+        <label
           style={{
             display: 'block',
             margin: '0 auto',
-            padding: '1.25rem 13.1rem',
+            padding: '0.7rem 9.35rem',
             marginTop: '10px',
-            backgroundColor: 'white',
+            fontFamily: 'inherit',
+            backgroundColor: 'blue',
+            color: 'white',
           }}
           variant="contained"
-        ></div>
+        >
+          Published
+        </label>
       )}
     </Card>
   );
