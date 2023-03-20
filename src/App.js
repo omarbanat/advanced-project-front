@@ -9,8 +9,10 @@ import ClassesSections from './pages/ClassesSections';
 import CourseEnrollments from './pages/CourseEnrollments';
 import Courses from './pages/Courses';
 import Users from './pages/Users';
-import AddCourseCard from './components/AddCourseCard';
 import MentorCourses from './pages/MentorCourses';
+import StudentsCourseCard from './components/StudentsCourseCard';
+import StudentsCourses from './pages/StudentsCourses';
+import AddCourseCard from './components/AddCourseCard';
 
 function App() {
   return (
@@ -23,8 +25,7 @@ function App() {
         <Route path="/enrollments" element={<CourseEnrollments />} />
         <Route path="/admin/courses" element={<Courses />} />
         <Route path="/mentor/courses" element={<MentorCourses />} />
-
-        {/* <Route path="/courses/add" element={<AddCourseCard />} /> */}
+        <Route path="/courses" element={<StudentsCourses />} />
         <Route path="/users" element={<Users />} />
       </Routes>
     </AdminSideBar>

@@ -27,6 +27,11 @@ const toggle = () => setIsOpen (!isOpen)
         icon: <FaBook />,
       },
       {
+        path: '/courses',
+        name: 'Courses',
+        icon: <FaBook />,
+      },
+      {
         path: '/mentor/courses',
         name: 'Courses',
         icon: <FaBook />,

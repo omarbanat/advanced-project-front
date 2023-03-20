@@ -166,12 +166,10 @@ export default function MentorCourseCard(props) {
               ? props.description
               : props.description.substring(0, 52)}
             {props.description.length > 100 && !showFullDescription && (
-              <div>
-                <n />
+              
                 <a href="#" onClick={() => setModalIsOpen(true)}>
                   View more
                 </a>
-              </div>
             )}
           </Typography>
           <ReactModal

@@ -7,7 +7,7 @@
   box-sizing: border-box;
   text-decoration: none;
 }
-.card {
+/* .card {
   border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
@@ -35,4 +35,4 @@
 .card-description {
   font-size: 16px;
   line-height: 1.5;
-}
+} */
