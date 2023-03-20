@@ -1,0 +1,50 @@
+.user-role-selector {
+  font-size: 20px;
+  display: flex;
+}
+
+.user-role-selector__students,
+.user-role-selector__mentors,
+.user-role-selector__admins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 50px;
+  border-bottom: 5px solid #d9d9d9;
+  cursor: pointer;
+}
+
+.user-role-selector__students p,
+.user-role-selector__mentors p,
+.user-role-selector__admins p {
+  margin: 0;
+}
+
+.user-role-selector__students__num,
+.user-role-selector__mentors__num,
+.user-role-selector__admins__num {
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+.user-role-selector__students:hover,
+.user-role-selector__mentors:hover,
+.user-role-selector__admins:hover {
+  border-bottom-color: rgba(0, 0, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.user-role-selector__students:active,
+.user-role-selector__mentors:active,
+.user-role-selector__admins:active {
+  border-bottom-color: blue;
+}
+
+.user-role-selector__clicked {
+  border-bottom-color: blue;
+}
