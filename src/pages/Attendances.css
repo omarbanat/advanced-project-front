@@ -1,0 +1,28 @@
+.attendances__title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #135bbc;
+}
+.attendances__table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.attendances__upper-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attendances__dropdown-toggles {
+  display: flex;
+  gap: 1em;
+}
+
+.attendances__container-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
