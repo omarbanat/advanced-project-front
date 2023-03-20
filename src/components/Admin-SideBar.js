@@ -15,45 +15,48 @@ function AdminSideBar({children}) {
 const [isOpen, setIsOpen] = useState(false);
 const toggle = () => setIsOpen (!isOpen)
 
-    const menuItem=[
-        
-        { 
-            path:"/users",
-            name:"Users",
-            icon:<FaUsers/>
-        },      
-        { 
-            path:"/courses",
-            name:"Courses",
-            icon:<FaBook/>
-        },   
-        { 
-            path:"/assignments",
-            name:"Assignments",
-            icon:<FaTasks/>
-        },         
-        
-        { 
-            path:"/announcements",
-            name:"Announcements",
-            icon:<FaNewspaper/>
-        },      
-       
-        { 
-            path:"/attendances",
-            name:"Attendances",
-            icon:<FaCalendarCheck/>
-        },      
-        { 
-            path:"/sections",
-            name:"Sections",
-            icon:<FaLayerGroup/>
-        },      
-        
-    ]
+    const menuItem = [
+      {
+        path: '/users',
+        name: 'Users',
+        icon: <FaUsers />,
+      },
+      {
+        path: '/admin/courses',
+        name: 'Courses',
+        icon: <FaBook />,
+      },
+      {
+        path: '/mentor/courses',
+        name: 'Courses',
+        icon: <FaBook />,
+      },
+      {
+        path: '/assignments',
+        name: 'Assignments',
+        icon: <FaTasks />,
+      },
+
+      {
+        path: '/announcements',
+        name: 'Announcements',
+        icon: <FaNewspaper />,
+      },
+
+      {
+        path: '/attendances',
+        name: 'Attendances',
+        icon: <FaCalendarCheck />,
+      },
+      {
+        path: '/sections',
+        name: 'Sections',
+        icon: <FaLayerGroup />,
+      },
+    ];
 
   return (
-
+    <div style={{backgroundColor: 'whitesmoke'}}>
     <div className='admin-container'>
         <div className='admin-sidebar'>
             <div className='admin-top_section'>
@@ -75,7 +78,7 @@ const toggle = () => setIsOpen (!isOpen)
 
         
     </div>
-   
+   </div>
   )
 }
 
