@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './courses.css';
 import Axios from 'axios';
-import StudentsCourseCard from '../components/StudentsCourseCard';
+import StudentsCourseCard from '../components/Courses/StudentsCourseCard';
 
 function StudentsCourses() {
   const API_URL = process.env.REACT_APP_API_URL;

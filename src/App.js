@@ -10,9 +10,8 @@ import CourseEnrollments from './pages/CourseEnrollments';
 import Courses from './pages/Courses';
 import Users from './pages/Users';
 import MentorCourses from './pages/MentorCourses';
-import StudentsCourseCard from './components/StudentsCourseCard';
 import StudentsCourses from './pages/StudentsCourses';
-import AddCourseCard from './components/AddCourseCard';
+import MentorAssignments from './pages/MentorAssignments';
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/assignments" element={<Assignments />} />
+        <Route path="/mentor/assignments" element={<MentorAssignments />} />
         <Route path="/attendances" element={<Attendances />} />
         <Route path="/sections" element={<ClassesSections />} />
         <Route path="/enrollments" element={<CourseEnrollments />} />

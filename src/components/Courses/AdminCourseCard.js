@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import course from '../assets/course.jpg';
+import course from '../../assets/course.jpg';
 import Button from '@mui/material/Button';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -113,7 +113,7 @@ export default function CourseCard(props) {
           sx={{ width: '100%', objectFit: 'fill' }}
         />
       </CardActionArea>
-      <CardContent style={{ padding: '0px', height: '7.9rem' }}>
+      <CardContent style={{ padding: '0px', height: '8.9rem' }}>
         <div style={{ textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'sans-serif' }}> {props.title} </h1>
           <h4 style={{ fontFamily: 'serif' }}> {props.durationByDays} Days</h4>
@@ -169,7 +169,7 @@ export default function CourseCard(props) {
         >
           <IconButton
             style={{
-              position: 'absolute',
+              position: 'relative',
               top: '0',
               right: '0',
               backgroundColor: 'transparent',

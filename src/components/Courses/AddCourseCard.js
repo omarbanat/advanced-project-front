@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Icon } from '@mui/material';
-import course from '../assets/course.jpg';
+import course from '../../assets/course.jpg';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { IconButton } from '@mui/material';
@@ -81,7 +81,7 @@ export default function AddCourseCard(props) {
           </IconButton>
           <CardMedia
             component="img"
-            height="350"
+            height="305"
             image={course}
             alt="green iguana"
             sx={{ width: '100%', objectFit: 'fill' }}
@@ -92,6 +92,7 @@ export default function AddCourseCard(props) {
               <h3>
                 Title
                 <input
+                style={{marginTop: '0.2rem'}}
                   value={formData.title}
                   onChange={(e) =>
                     setFormData({ ...formData, title: e.target.value })
@@ -113,7 +114,7 @@ export default function AddCourseCard(props) {
                   }
                   placeholder="days"
                   type="number"
-                  style={{ width: '3rem' }}
+                  style={{ width: '3.5rem' , fontSize: "1rem"}}
                   required
                 />
                 Days

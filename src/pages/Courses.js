@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import CourseCard from '../components/AdminCourseCard';
+import CourseCard from '../components/Courses/AdminCourseCard';
 
 import './courses.css';
 
 import Axios from 'axios';
-import AddCourseCard from '../components/AddCourseCard';
+import AddCourseCard from '../components/Courses/AddCourseCard';
 import Button from '@mui/material/Button';
 // import { display } from '@mui/system';
 
@@ -12,7 +12,7 @@ function Courses() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [courseCards, setCourseCards] = useState([]);
   const [courseCycle, setCourseCycle] = useState([]);
-  const [render,setRender] = useState(false)
+  const [render, setRender] = useState(false);
 
   const handleDeleteCard = (id) => {
     const dl = window.confirm('Are you sure you want to delete this course?');
@@ -40,8 +40,9 @@ function Courses() {
   const [courses, setCourses] = useState([]);
 
   const rerender = () => {
-    setRender(prev => !prev)
-  }
+    setRender((prev) => !prev);
+  };
+  
 
   useEffect(() => {
     Axios.get(`${API_URL}/courses/get`).then(
@@ -96,7 +97,7 @@ function Courses() {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'flex-start ',
-          fontSize: '1.2rem',
+          fontSize: '0.9rem',
           justifyContent: 'space-between',
         }}
       >
@@ -140,7 +141,7 @@ function Courses() {
       >
         Add new course
       </Button>
-      {zid && <AddCourseCard close={closeAddCourse} render={rerender}/>}
+      {zid && <AddCourseCard close={closeAddCourse} render={rerender} />}
       <div className="course-card">{brom}</div>
     </>
   );
