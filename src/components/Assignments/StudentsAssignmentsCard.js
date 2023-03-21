@@ -54,29 +54,37 @@ export default function StudentsAssignmentsCard(props) {
       .post(`${API_URL}/assignmentsSubmission/add`, submitForm)
       .then((response) => {
         console.log(response);
-        props.render()
+        props.render();
+
       })
       .catch((error) => {
         console.log(error.response.data);
       });
+      
   };
-const kamel =
+const graded =
   Array.isArray(props.submission) &&
   props.submission.map((item) => {
     return item.grade;
   });
-
-  console.log('props.submissiooonnnf', kamel);
+  
+   let firstNonNullGrade = null;
+   for (let i = 0; i < graded.length; i++) {
+     if (graded[i] !== null) {
+       firstNonNullGrade = graded[i];
+       break;
+     }
+   }
 
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   return (
-    <Card sx={{ width: 700, height: '100%' }}>
-      <CardContent style={{ padding: '0px', height: '30.9rem' }}>
+    <Card sx={{ width: 855, height: '100%' }}>
+      <CardContent style={{ padding: '0px', height: '23.9rem' }}>
         <div style={{ textAlign: 'center' }}>
-          <h1 style={{ fontFamily: 'sans-serif', backgroundColor: 'silver' }}>
-            {' '}
-            {props.title}{' '}
+          <h1 style={{ fontFamily: 'sans-serif', backgroundColor: Array.isArray(props.submission) &&
+      props.submission.length > 0 ?'silver' : "blue" }}>
+            {props.title}
           </h1>
           <h2
             style={{ fontFamily: 'serif', marginTop: '2.3rem', color: 'red' }}
@@ -151,7 +159,7 @@ const kamel =
               required
               style={{ width: '4.5rem', height: '3rem' }}
               name="grade"
-              value={kamel[1]}
+              value={firstNonNullGrade}
               readOnly
             />
           </h3>
@@ -200,13 +208,14 @@ const kamel =
             />
           </h3>
           <Button
-            onClick={handleSubmit}
+            onSubmit={handleSubmit}
             style={{
               display: 'block',
               margin: '0 auto',
-              padding: '0.7rem 20.15rem',
+              padding: '0.7rem 23.95rem',
               marginTop: '10px',
               fontFamily: 'initial',
+              fontSize: '1.3rem',
               backgroundColor: 'red',
             }}
             variant="contained"

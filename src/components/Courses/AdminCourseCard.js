@@ -113,7 +113,7 @@ export default function CourseCard(props) {
           sx={{ width: '100%', objectFit: 'fill' }}
         />
       </CardActionArea>
-      <CardContent style={{ padding: '0px', height: '8.9rem' }}>
+      <CardContent style={{ padding: '0px', height: '11.9rem' }}>
         <div style={{ textAlign: 'center' }}>
           <h1 style={{ fontFamily: 'sans-serif' }}> {props.title} </h1>
           <h4 style={{ fontFamily: 'serif' }}> {props.durationByDays} Days</h4>
@@ -122,27 +122,29 @@ export default function CourseCard(props) {
             {props.dates.length > 0 ? (
               props.dates
             ) : btnClicked ? (
-              <form onSubmit={handleFormSubmit} key={props.courseID}>
-                <input
-                  value={formData.startDate}
-                  onChange={(e) =>
-                    setFormData({ ...formData, startDate: e.target.value })
-                  }
-                  placeholder="date"
-                  type="date"
-                  name="startDate"
-                />
-                <input
-                  value={formData.endDate}
-                  onChange={(e) =>
-                    setFormData({ ...formData, endDate: e.target.value })
-                  }
-                  placeholder="date"
-                  type="date"
-                  name="endDate"
-                />
-                <input type="submit" />
-              </form>
+              <div>
+                <form onSubmit={handleFormSubmit} key={props.courseID}>
+                  <input
+                    value={formData.startDate}
+                    onChange={(e) =>
+                      setFormData({ ...formData, startDate: e.target.value })
+                    }
+                    placeholder="date"
+                    type="date"
+                    name="startDate"
+                  />
+                  <input
+                    value={formData.endDate}
+                    onChange={(e) =>
+                      setFormData({ ...formData, endDate: e.target.value })
+                    }
+                    placeholder="date"
+                    type="date"
+                    name="endDate"
+                  />
+                  <input type="submit" />
+                </form>
+              </div>
             ) : (
               ''
             )}

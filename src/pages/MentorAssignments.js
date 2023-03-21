@@ -16,24 +16,23 @@ function MentorAssignments() {
   const [render, setRender] = useState(false);
   const [enroll, setEnroll] = useState(false);
 
-  
-   const [addNewAssignment, setAddNEwAssignment] = useState(false);
+  const [addNewAssignment, setAddNEwAssignment] = useState(false);
 
-   const closeAddAssignment = () => {
-     setAddNEwAssignment(!addNewAssignment);
-   };
+  const closeAddAssignment = () => {
+    setAddNEwAssignment(!addNewAssignment);
+  };
 
-   const addAssignment = () => {
-     setAddNEwAssignment(!addNewAssignment);
-   };
+  const addAssignment = () => {
+    setAddNEwAssignment(!addNewAssignment);
+  };
 
-const rerender = () => {
-  setRender((prev) => !prev);
-  setAddNEwAssignment(false)
-};
- 
+  const rerender = () => {
+    setRender((prev) => !prev);
+    setAddNEwAssignment(false);
+  };
 
   useEffect(() => {
+    console.log('API: ', API_URL);
     Axios.get(`${API_URL}/assignments/get`).then(
       (response) => {
         console.log('helloooooooo', response);
@@ -64,7 +63,6 @@ const rerender = () => {
       }
     );
   }, [render]);
-
 
   console.log(assignments, 'assignments');
   console.log(assignmentsSubmissions, 'assignmentsSubmissions');

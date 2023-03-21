@@ -44,13 +44,23 @@ export default function AddAssisngmentCard(props) {
   };
 
   return (
-    <Card sx={{ width: 550 }}>
+    <Card sx={{ width: 850 }}>
       <CardContent
         style={{
           padding: '0px',
-          height: '36.2rem',
+          height: '38.2rem',
         }}
       >
+        <h1
+          style={{
+            color: 'white',
+            backgroundColor: '#71706E',
+            fontFamily: 'serif',
+            padding: '1rem 0rem',
+          }}
+        >
+          Create New Assignment
+        </h1>
         <form onSubmit={handleSubmit}>
           <div>
             <h2 style={{ fontFamily: 'cursive' }}>
@@ -121,11 +131,11 @@ export default function AddAssisngmentCard(props) {
             style={{
               display: 'block',
               margin: '0 auto',
-              padding: '1.15rem 11.65rem',
+              padding: '1.11rem 16.95rem',
               marginTop: '10px',
-              fontFamily: 'initial',
-              fontSize: '1rem',
-              backgroundColor: 'red',
+              fontFamily: 'serif',
+              fontSize: '1.7rem',
+              backgroundColor: 'blue',
             }}
             variant="contained"
           >

@@ -71,7 +71,7 @@ function Assignments() {
         console.log(error);
       }
     );
-  }, [enroll]);
+  }, [render]);
 
   useEffect(() => {
     Axios.get(`${API_URL}/assignmentsSubmission/get`).then(
@@ -87,7 +87,7 @@ function Assignments() {
         console.log(error);
       }
     );
-  }, [enroll]);
+  }, [render]);
 
   // const brom = courses.map((item) => {
   //   const filteredCycle = courseCycle.filter(

@@ -86,7 +86,7 @@ function MentorCourses() {
         <input type="date" value={cycle.startDate} readOnly />
         <br />
         <label>End </label>
-        <input type="date" value={cycle.endDate} zreadOnly />
+        <input type="date" value={cycle.endDate} readOnly />
       </div>
     ));
     //  console.log(dateInputs)

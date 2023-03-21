@@ -16,11 +16,6 @@ import axios from 'axios';
 export default function MentorAssignmentsCard(props) {
   const API_URL = process.env.REACT_APP_API_URL;
 
-  // const brom = props.submission.map((submission) => {
-  //   return submission.id
-  // })
-
-  // console.log(brom
   const customStyles = {
     content: {
       top: '50%',
@@ -71,20 +66,29 @@ export default function MentorAssignmentsCard(props) {
         return item.grade;
       });
 
+
+  let firstNonNullGrade = null;
+  for (let i = 0; i < graded.length; i++) {
+    if (graded[i] !== null) {
+      firstNonNullGrade = graded[i];
+      break;
+    }
+  }
+
   console.log('kamellllln', graded);
 
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   return (
-    <Card sx={{ width: 700, height: '100%' }}>
-      <CardContent style={{ padding: '0px', height: '30.9rem' }}>
+    <Card sx={{ width: 855 , height: '100%' }}>
+      <CardContent style={{ padding: '0px', height: '23.9rem' }}>
         <div style={{ textAlign: 'center' }}>
-          <h1 style={{ fontFamily: 'sans-serif', backgroundColor: 'silver' }}>
+          <h1 style={{ fontFamily: 'sans-serif', backgroundColor: 'blue', color: 'white' }}>
             {' '}
             {props.title}{' '}
           </h1>
           <h2
-            style={{ fontFamily: 'serif', marginTop: '2.3rem', color: 'red' }}
+            style={{ fontFamily: 'serif', marginTop: '2.3rem', color: 'red', }}
           >
             Deadline {props.dueDate}
           </h2>
@@ -131,7 +135,7 @@ export default function MentorAssignmentsCard(props) {
           Submitted <br /> <label> {kamel}</label>
         </h4>
       )}
-      {kamel[0] && graded[0] === null && !graded[1] && (
+      {kamel[0] && graded[0] === null && !firstNonNullGrade && (
         <div>
           <form>
             <h3
@@ -169,7 +173,7 @@ export default function MentorAssignmentsCard(props) {
               style={{
                 display: 'block',
                 margin: '0 auto',
-                padding: '0.5rem 19.25rem',
+                padding: '0.5rem 24.1rem',
                 marginTop: '10px',
                 fontFamily: 'initial',
                 fontSize: '1.4rem',
@@ -218,7 +222,7 @@ export default function MentorAssignmentsCard(props) {
           </label>
         </div>
       )}
-      {graded[1] && kamel[0] && (
+      {firstNonNullGrade && kamel[0] && (
         <div>
           <h3
             style={{
@@ -246,7 +250,7 @@ export default function MentorAssignmentsCard(props) {
               required
               style={{ width: '4.5rem', height: '3rem' }}
               name="grade"
-              value={graded[1]}
+              value={firstNonNullGrade}
               readOnly
             />
           </h3>
