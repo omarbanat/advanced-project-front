@@ -2,13 +2,14 @@ import './App.css';
 import React from 'react';
 import AdminSideBar from "./components/Admin-SideBar"
 import { BrowserRouter, Route , Routes } from 'react-router-dom';
-import Announcements from './pages/Announcements';
 import Assignments from './pages/Assignments';
 import Attendances from './pages/Attendances';
 import ClassesSections from './pages/ClassesSections';
 import CourseEnrollments from './pages/CourseEnrollments';
 import Courses from './pages/Courses';
 import Users from './pages/Users';
+import Announcements from './pages/announcementsPage/Announcements';
+
 
 function App() {
   return (
