@@ -1,37 +1,50 @@
-import Axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import AdminUsers from '../components/AdminUsers/AdminUsers';
+import UserFiltering from '../components/UserFiltering/UserFiltering';
+import UserRoleSelector from '../components/UserRoleSelector/UserRoleSelector';
+
+import './Users.css';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Users() {
   const [users, setUsers] = useState([]);
+  const [filterBy, setFilterBy] = useState(null);
+  const [usersNum, setUsersNum] = useState({});
+
+  const fetchUsers = async () => {
+    const response = await axios.get(`${API_URL}/user/getAll`);
+    const data = response.data.message;
+    let [students, mentors, admins] = [0, 0, 0];
+    data.forEach((el) => {
+      if (el.role === 'student') students++;
+      else if (el.role === 'mentor') mentors++;
+      else admins++;
+      setUsersNum({
+        students: students,
+        mentors: mentors,
+        admins: admins,
+      });
+    });
+    setUsers(data);
+  };
 
   useEffect(() => {
-    Axios.get("http://127.0.0.1:8000/api/user/getAll").then(
-      (response) => {
-        console.log(response.data); // Log the response data to the console
-        if (Array.isArray(response.data.message)) {
-          setUsers(response.data.message);
-        } else {
-          console.log("Response data is not an array:", response.data);
-        }
-      },
-      (error) => {
-        console.log(error); // Log any errors to the console
-      }
-    );
+    fetchUsers();
   }, []);
-
- 
-
   return (
     <div>
-    {users.map((user) => (
-      <div key={user.id}>
-        <h1>Name:  {user.fName}     {user.lName}</h1>
-        <br/>
-        <h3>Email: {user.email}</h3>
-        <br/>
+      <h1>Users</h1>
+      <div className="users__top-comp">
+        <UserRoleSelector
+          usersNum={usersNum}
+          filterBy={filterBy}
+          setFilterBy={setFilterBy}
+        />
+        <UserFiltering />
       </div>
-    ))}
+      <AdminUsers users={users} filterBy={filterBy} />
     </div>
   );
 }

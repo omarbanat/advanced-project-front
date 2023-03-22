@@ -1,5 +1,38 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap'); */
+
 * {
+  font-family: 'Nunito', sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   text-decoration: none;
 }
+/* .card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card img {
+  display: block;
+  max-width: 100%;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-date {
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 16px;
+  line-height: 1.5;
+} */

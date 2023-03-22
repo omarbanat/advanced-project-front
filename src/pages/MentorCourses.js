@@ -1,48 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import CourseCard from '../components/Courses/AdminCourseCard';
-
 import './courses.css';
-
 import Axios from 'axios';
-import AddCourseCard from '../components/Courses/AddCourseCard';
-import Button from '@mui/material/Button';
-// import { display } from '@mui/system';
+import MentorCourseCard from '../components/Courses/MentorCourseCard';
 
-function Courses() {
+function MentorCourses() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [courseCards, setCourseCards] = useState([]);
   const [courseCycle, setCourseCycle] = useState([]);
-  const [render, setRender] = useState(false);
 
-  const handleDeleteCard = (id) => {
-    const dl = window.confirm('Are you sure you want to delete this course?');
-    if (dl)
-      Axios.delete(`${API_URL}/courses/delete/${id}`).then(
-        (response) => {
-          setCourseCards(courseCards.filter((card) => card.id !== id));
-          alert('course deleted');
-          console.log('course deleted');
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  };
-  const [zid, setZid] = useState(false);
+  // const handleDeleteCard = (id) => {
+  //   const dl = window.confirm('Are you sure you want to delete this course?');
+  //   if (dl)
+  //     Axios.delete(`${API_URL}/courses/delete/${id}`).then(
+  //       (response) => {
+  //         setCourseCards(courseCards.filter((card) => card.id !== id));
+  //         alert('course deleted');
+  //         console.log('course deleted');
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       }
+  //     );
+  // };
+  // const [zid, setZid] = useState(false);
 
-  const closeAddCourse = () => {
-    setZid(!zid);
-  };
+  // const closeAddCourse = () => {
+  //   setZid(!zid);
+  // };
 
-  const addCourse = () => {
-    setZid(!zid);
-  };
+  // const addCourse = () => {
+  //   setZid(!zid);
+  // };
   const [courses, setCourses] = useState([]);
-
-  const rerender = () => {
-    setRender((prev) => !prev);
-  };
-  
 
   useEffect(() => {
     Axios.get(`${API_URL}/courses/get`).then(
@@ -58,7 +47,7 @@ function Courses() {
         console.log(error);
       }
     );
-  }, [render]);
+  }, []);
 
   useEffect(() => {
     Axios.get(`${API_URL}/courseCycle/get`).then(
@@ -74,15 +63,7 @@ function Courses() {
         console.log(error);
       }
     );
-  }, [render]);
-
-  // const barmeTenye = courseCycle.map((item) => {
-  //   return {
-  //     startDate: item.startDate,
-  //     endDate: item.endDate,
-  //     courseID: item.courseID,
-  //   };
-  // });
+  }, []);
 
   const brom = courses.map((item) => {
     // filter courseCycle by courseID that matches current item's id
@@ -97,54 +78,38 @@ function Courses() {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'flex-start ',
-          fontSize: '0.9rem',
+          fontSize: '1rem',
           justifyContent: 'space-between',
         }}
       >
-        <label className="admin-mentor-course-label">Start </label>
+        <label >Start </label>
         <input type="date" value={cycle.startDate} readOnly />
         <br />
-        <label className="admin-mentor-course-label">End </label>
+        <label>End </label>
         <input type="date" value={cycle.endDate} readOnly />
       </div>
     ));
     //  console.log(dateInputs)
     // console.log(filteredCycle)
     return (
-      <CourseCard
+      <MentorCourseCard
         key={item.id}
         courseID={item.id}
         title={item.title}
         description={item.description}
         durationByDays={item.durationByDays}
-        deleteCard={() => handleDeleteCard(item.id)}
+        // deleteCard={() => handleDeleteCard(item.id)}
         dates={dateInputs}
-        render={rerender}
+        cycle={filteredCycle}
       />
     );
   });
 
   return (
     <>
-      <Button
-        style={{
-          display: 'block',
-          margin: '0 auto',
-          padding: '1rem 1.7rem',
-          backgroundColor: 'blue',
-          marginTop: '0.9rem',
-          marginBottom: '0.9rem',
-          marginLeft: '0rem',
-        }}
-        variant="contained"
-        onClick={addCourse}
-      >
-        Add new course
-      </Button>
-      {zid && <AddCourseCard close={closeAddCourse} render={rerender} />}
       <div className="course-card">{brom}</div>
     </>
   );
 }
 
-export default Courses;
+export default MentorCourses;

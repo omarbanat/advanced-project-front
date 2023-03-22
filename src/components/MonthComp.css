@@ -1,0 +1,8 @@
+.month-comp__button {
+  border-radius: 15px;
+  font-size: 1.25em;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  padding: 0.1em 1.25em;
+}
