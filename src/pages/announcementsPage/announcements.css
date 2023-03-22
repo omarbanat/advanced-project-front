@@ -1,0 +1,118 @@
+/* .table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  max-width: 800px;
+} */
+
+
+.announcement_title{
+  font-size: 45px;
+  color: #135BBC;
+  font-weight: bold;
+  position: relative;
+  top: 1vw;
+}
+
+/* .add-announcement {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+} */
+
+table {
+  border-collapse: collapse;
+  position: absolute;
+  top: 20%;
+  left: 21%;
+  width: 75%;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 30px;  
+}
+th {
+  background-color: #b9b9b9;
+  opacity: 80%;
+
+}
+
+.frm-edit {
+  width: 30%;
+  height: 70vh;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: rgb(103, 103, 103);
+  z-index: 2;
+  color: white;
+  font-size: 18px;
+}
+
+.frm-edit input {
+  width: 200px;
+padding: 8px;}
+
+.frm-edit button {
+  width: 80px;
+  height: 40px;
+}
+.frm-edit label{
+display: flex;
+flex-direction: column;
+}
+.announcements_add-button{
+  color: white;
+  background-color: #135BBC;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 14%;
+  left: 90%;
+}
+.my-1{
+  /* background-color: red;
+  display: flex;
+  margin-right: 1000px; */
+  display: none;
+}
+.announcement_delete{
+  width: 25%;
+  height: 10vh;
+  border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 15%;
+  left: 55%;
+  background-color: rgb(103, 103, 103);
+  z-index: 2;
+  color: white;
+  font-size: 18px;
+opacity: 80%;
+}
+.announcement_delete button {
+  width: 60px;
+  height: 20px;
+}
+.announcement_actions-edit{
+  padding: 5px;
+}
+.announcement_actions-delete{
+  padding: 5px;
+}
