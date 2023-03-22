@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './loginPage.css';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -9,7 +11,7 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/api/login', {
+      const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,56 +25,60 @@ function LoginPage() {
       const data = await response.json();
       sessionStorage.setItem('token', data.token);
       console.log(data.token);
-      window.location.href = '/';
+      window.location.href = '/dashboard';
     } catch (error) {
       setError(error.message);
     }
   };
 
+  
+  useEffect(() => {
+    if (sessionStorage.getItem('token')) sessionStorage.removeItem('token')
+  });
+
   return (
-      <div className="login-page">
-        {/* <div className="login_title">
+    <div className="login-page">
+      {/* <div className="login_title">
           <h1>MAKO LMS</h1>
         </div> */}
-        <div className="login_form">
-          <form className="login-form" onSubmit={handleLogin}>
-            <input
-              type="text"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button>login</button>
-            {error && <p className="error">{error}</p>}
-            <p className="message">
-              Not registered? <a href="#"  onClick={() => window.location.href = "http://localhost:3000/register"}>Create an account</a>
-            </p>
-          </form>
-        </div>
+      <div className="login_form">
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button>login</button>
+          {error && <p className="error">{error}</p>}
+          <p className="message">
+            Not registered?{' '}
+            <a
+              href="#"
+              onClick={() =>
+                (window.location.href = 'http://localhost:3000/register')
+              }
+            >
+              Create an account
+            </a>
+          </p>
+        </form>
       </div>
+    </div>
   );
 }
 
 export default LoginPage;
 
-
-
-
-
-
-
-
 // import React from 'react';
 // import './loginPage.css';
 // import './loginPage.js'
-
-
 
 // function handleLogin(event) {
 //   event.preventDefault();
@@ -103,9 +109,6 @@ export default LoginPage;
 //     // handle error, e.g. display error message to user
 //   });
 // }
-
-
-
 
 // function LoginPage() {
 //   return (

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './register.css'
+import './register.css';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -11,71 +11,113 @@ function Register() {
     DOB: '',
     phoneNumber: '',
     gender: '',
-    role: ''
+    role: '',
   });
 
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("formdata ",formData);
+    console.log('formdata ', formData);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/register', formData, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        'http://localhost:8000/api/register',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
-      });
+      );
 
-      console.log("response ",response.data);
+      console.log('response ', response.data);
       setErrorMessage('');
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = 'http://localhost:3000/login';
     } catch (error) {
       console.error(error);
       setErrorMessage('Registration failed. Please try again.');
     }
   };
 
+  useEffect(() => {
+    if (sessionStorage.getItem('token')) sessionStorage.removeItem('token');
+  });
+
   return (
-    <form onSubmit={handleSubmit} className='register_page'>
-      <div className='register_options'>
-        <div className='left-options'> 
+    <form onSubmit={handleSubmit} className="register_page">
+      <div className="register_options">
+        <div className="left-options">
           <label>
             First Name:
-            <input type="text" name="fName" value={formData.fName} onChange={handleChange} />
+            <input
+              type="text"
+              name="fName"
+              value={formData.fName}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Last Name:
-            <input type="text" name="lName" value={formData.lName} onChange={handleChange} />
+            <input
+              type="text"
+              name="lName"
+              value={formData.lName}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Email:
-            <input type="email" name="email" value={formData.email} onChange={handleChange} />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Password:
-            <input type="password" name="password" value={formData.password} onChange={handleChange} />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
           </label>
         </div>
-        <div className='right-options'> 
+        <div className="right-options">
           <label>
             Date of Birth:
-            <input type="date" name="DOB" value={formData.DOB} onChange={handleChange} />
+            <input
+              type="date"
+              name="DOB"
+              value={formData.DOB}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Phone Number:
-            <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} />
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Gender:
-            <select name="gender" value={formData.gender} onChange={handleChange} >
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+            >
               <option value="">Select</option>
-              <option value="male" >Male</option>
+              <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
           </label>
@@ -90,8 +132,18 @@ function Register() {
           </label>
         </div>
       </div>
-      <button type="submit" className='register_button'>Register</button>
-      <p className="message">Already registered? <a href="#" onClick={() => window.location.href = "http://localhost:3000/login"}>Sign In</a></p>
+      <button type="submit" className="register_button">
+        Register
+      </button>
+      <p className="message">
+        Already registered?{' '}
+        <a
+          href="#"
+          onClick={() => (window.location.href = 'http://localhost:3000/login')}
+        >
+          Sign In
+        </a>
+      </p>
       {errorMessage && <p className="error">{errorMessage}</p>}
     </form>
   );
