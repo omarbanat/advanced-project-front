@@ -41,6 +41,11 @@ const toggle = () => setIsOpen (!isOpen)
         name: 'Assignments',
         icon: <FaTasks />,
       },
+      {
+        path: '/mentor/assignments',
+        name: 'Assignments',
+        icon: <FaTasks />,
+      },
 
       {
         path: '/announcements',

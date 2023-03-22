@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './courses.css';
 import Axios from 'axios';
-import MentorCourseCard from '../components/MentorCourseCard';
+import MentorCourseCard from '../components/Courses/MentorCourseCard';
 
 function MentorCourses() {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -78,15 +78,15 @@ function MentorCourses() {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'flex-start ',
-          fontSize: '1.2rem',
+          fontSize: '1rem',
           justifyContent: 'space-between',
         }}
       >
-        <label>Start </label>
+        <label >Start </label>
         <input type="date" value={cycle.startDate} readOnly />
         <br />
         <label>End </label>
-        <input type="date" value={cycle.endDate} zreadOnly />
+        <input type="date" value={cycle.endDate} readOnly />
       </div>
     ));
     //  console.log(dateInputs)
