@@ -28,6 +28,10 @@ const AdminUserPopupForm = ({ setShowPopup }) => {
       }
     );
     console.log('RES: ', resss);
+    if (resss.status === 201) {
+      console.log('RElo');
+      window.location.reload(true);
+    }
   };
 
   return (

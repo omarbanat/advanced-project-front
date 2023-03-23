@@ -1,6 +1,6 @@
 import AdminSideBar from './components/Admin-SideBar';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Announcements from './pages/Announcements';
+import Announcements from './pages/announcementsPage/Announcements';
 import Assignments from './pages/Assignments';
 import Attendances from './pages/Attendances';
 import ClassesSections from './pages/ClassesSections';

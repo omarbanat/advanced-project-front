@@ -5,6 +5,8 @@ import './announcements.css';
 import { Button } from 'react-bootstrap';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Announcements = () => {
   const [data, setData] = useState([]);
   const [editTitle, setEditTitle] = useState('');
@@ -12,7 +14,7 @@ const Announcements = () => {
   const [editSentBy, setEditSentBy] = useState('');
   const [editTo, setEditTo] = useState('');
   const [newAnnouncement, setNewAnnouncement] = useState({
-    title: '',  
+    title: '',
     description: '',
     sentBy: '',
     to: '',
@@ -69,9 +71,7 @@ const Announcements = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          'http://localhost:8000/api/announcements'
-        );
+        const response = await axios.get(`${API_URL}/announcements/get`);
 
         setData(response.data);
         console.log(response.data);
@@ -99,28 +99,23 @@ const Announcements = () => {
     event.preventDefault();
     try {
       const pubDate = new Date().toISOString().substring(0, 10);
-      const response = await axios.post(
-        'http://localhost:8000/api/announcements/create',
-        {
-          ...newAnnouncement,
-          pubDate,
-          senderId: newAnnouncement.sentBy,
-          receiverId: newAnnouncement.to,
-        }
-      );
+      const response = await axios.post(`${API_URL}/announcements/create`, {
+        ...newAnnouncement,
+        pubDate,
+        senderId: newAnnouncement.sentBy,
+        receiverId: newAnnouncement.to,
+      });
       console.log(response);
       setShowAddForm(false);
       setData([
         ...data,
         {
-          
           ...newAnnouncement,
           pubDate,
           senderId: response.data.sender,
           receiverId: response.data.receiver,
         },
-        window.location.reload()
-
+        window.location.reload(),
       ]);
       setNewAnnouncement({
         title: '',
@@ -133,7 +128,7 @@ const Announcements = () => {
     }
   };
 
-  const handleEdit = (announcement)=> {
+  const handleEdit = (announcement) => {
     setSelectedAnnouncement(announcement);
     setEditTitle(announcement.title);
     setEditDescription(announcement.description);
@@ -141,8 +136,8 @@ const Announcements = () => {
     setEditTo(announcement.receiverId);
     setShowEdit(true);
   };
-  const handleSave = async (id) =>{
-    await axios.put(`http://localhost:8000/api/announcements/edit/${id}`, {
+  const handleSave = async (id) => {
+    await axios.put(`${API_URL}/announcements/edit/${id}`, {
       title: editTitle,
       description: editDescription,
       sentBy: editSentBy,
@@ -155,45 +150,46 @@ const Announcements = () => {
     window.location.reload();
   };
 
-
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/announcements/delete/${id}`
+        `${API_URL}/announcements/delete/${id}`
       );
       console.log(response);
       setData(data.filter((announcement) => announcement.id !== id));
     } catch (error) {
       console.log(error);
     }
-   
   };
-  
+
   const handleDeleteClick = (id) => {
     if (window.confirm('Are you sure you want to delete this announcement?')) {
       handleDelete(id);
     }
   };
 
-  function handleCancle(){
+  function handleCancle() {
     setShowEdit(false);
     setShowAddForm(false);
     setShowDeleteForm(false);
-
   }
- 
-
-
 
   const actions = (announcement) => (
-    <div className='announcement_actions-buttons'>
-      <PencilSquare size={24} onClick={() => handleEdit(announcement)} style={{cursor: 'pointer'}} className='announcement_actions-edit'/>
-      <Trash size={24} onClick={() => handleDeleteClick(announcement.id)} style={{cursor: 'pointer'}} className='announcement_actions-delete'/>
+    <div className="announcement_actions-buttons">
+      <PencilSquare
+        size={24}
+        onClick={() => handleEdit(announcement)}
+        style={{ cursor: 'pointer' }}
+        className="announcement_actions-edit"
+      />
+      <Trash
+        size={24}
+        onClick={() => handleDeleteClick(announcement.id)}
+        style={{ cursor: 'pointer' }}
+        className="announcement_actions-delete"
+      />
     </div>
   );
-  
-  
-  
 
   initialData.rows = data.map((announcement) => ({
     ...announcement,
@@ -205,11 +201,12 @@ const Announcements = () => {
 
   return (
     <div className="table-container">
-      <div className='announcement_title'>
-        Announcements
-      </div>
+      <div className="announcement_title">Announcements</div>
       <div className="add-announcement">
-        <button onClick={() => setShowAddForm(!showAddForm)} className="announcements_add-button">
+        <button
+          onClick={() => setShowAddForm(!showAddForm)}
+          className="announcements_add-button"
+        >
           + ADD
         </button>
         {showAddForm && (
@@ -251,51 +248,62 @@ const Announcements = () => {
               />
             </label>
             <button type="submit">Submit</button>
-            <button type='button' onClick={handleCancle}>Cancel</button>
-
+            <button type="button" onClick={handleCancle}>
+              Cancel
+            </button>
           </form>
         )}
 
-       {showEdit && (<form className="frm-edit" onSubmit={(e) => { e.preventDefault(); selectedAnnouncement && handleSave(selectedAnnouncement.id); }}>
-  <label>
-    Title:
-    <input
-      type="text"
-      name="title"
-      value={editTitle}
-      onChange={(e) => setEditTitle(e.target.value)}
-    />
-  </label>
-  <label>
-    Description:
-    <input
-      type="text"
-      name="description"
-      value={editDescription}
-      onChange={(e) => setEditDescription(e.target.value)}
-    />
-  </label>
-  <label>
-    Sent By:
-    <input
-      type="text"
-      name="sentBy"
-      value={editSentBy}
-      onChange={(e) => setEditSentBy(e.target.value)}
-    />
-  </label>
-  <label>
-    To:
-    <input
-      type="text"
-      name="to"
-      value={editTo}
-      onChange={(e) => setEditTo(e.target.value)}
-    />
-  </label>
-  <button type="submit">edit</button>
-  <button type='button' onClick={handleCancle}>Cancel</button>
-</form>)}
+        {showEdit && (
+          <form
+            className="frm-edit"
+            onSubmit={(e) => {
+              e.preventDefault();
+              selectedAnnouncement && handleSave(selectedAnnouncement.id);
+            }}
+          >
+            <label>
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+              />
+            </label>
+            <label>
+              Description:
+              <input
+                type="text"
+                name="description"
+                value={editDescription}
+                onChange={(e) => setEditDescription(e.target.value)}
+              />
+            </label>
+            <label>
+              Sent By:
+              <input
+                type="text"
+                name="sentBy"
+                value={editSentBy}
+                onChange={(e) => setEditSentBy(e.target.value)}
+              />
+            </label>
+            <label>
+              To:
+              <input
+                type="text"
+                name="to"
+                value={editTo}
+                onChange={(e) => setEditTo(e.target.value)}
+              />
+            </label>
+            <button type="submit">edit</button>
+            <button type="button" onClick={handleCancle}>
+              Cancel
+            </button>
+          </form>
+        )}
       </div>
       <MDBDataTable
         striped

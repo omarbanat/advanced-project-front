@@ -62,11 +62,11 @@ function AdminSideBar({ children }) {
       name: 'Attendances',
       icon: <FaCalendarCheck />,
     },
-    {
-      path: '/dashboard/sections',
-      name: 'Sections',
-      icon: <FaLayerGroup />,
-    },
+    // {
+    //   path: '/dashboard/sections',
+    //   name: 'Sections',
+    //   icon: <FaLayerGroup />,
+    // },
     {
       path: '/',
       name: 'Logout',

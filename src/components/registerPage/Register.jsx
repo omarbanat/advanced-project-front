@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './register.css';
+import { useNavigate } from 'react-router-dom';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Register() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fName: '',
     lName: '',
@@ -26,19 +30,15 @@ function Register() {
     console.log('formdata ', formData);
 
     try {
-      const response = await axios.post(
-        'http://localhost:8000/api/register',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/register`, formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
       console.log('response ', response.data);
       setErrorMessage('');
-      window.location.href = 'http://localhost:3000/login';
+      navigate('/login');
     } catch (error) {
       console.error(error);
       setErrorMessage('Registration failed. Please try again.');
@@ -137,10 +137,7 @@ function Register() {
       </button>
       <p className="message">
         Already registered?{' '}
-        <a
-          href="#"
-          onClick={() => (window.location.href = 'http://localhost:3000/login')}
-        >
+        <a href="#" onClick={() => navigate('/login')}>
           Sign In
         </a>
       </p>

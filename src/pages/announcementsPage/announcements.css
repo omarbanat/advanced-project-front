@@ -6,10 +6,9 @@
   max-width: 800px;
 } */
 
-
-.announcement_title{
+.announcement_title {
   font-size: 45px;
-  color: #135BBC;
+  color: #135bbc;
   font-weight: bold;
   position: relative;
   top: 1vw;
@@ -21,7 +20,7 @@
   margin-bottom: 20px;
 } */
 
-table {
+/* table {
   border-collapse: collapse;
   position: absolute;
   top: 20%;
@@ -38,7 +37,7 @@ th {
   background-color: #b9b9b9;
   opacity: 80%;
 
-}
+} */
 
 .frm-edit {
   width: 30%;
@@ -61,40 +60,42 @@ th {
 
 .frm-edit input {
   width: 200px;
-padding: 8px;}
+  padding: 8px;
+}
 
 .frm-edit button {
   width: 80px;
   height: 40px;
 }
-.frm-edit label{
-display: flex;
-flex-direction: column;
+.frm-edit label {
+  display: flex;
+  flex-direction: column;
 }
-.announcements_add-button{
+.announcements_add-button {
+  position: fixed;
   color: white;
-  background-color: #135BBC;
+  background-color: #135bbc;
   width: 100px;
   height: 40px;
   font-size: 20px;
   border-radius: 20px;
   position: absolute;
-  top: 14%;
-  left: 90%;
+  top: 4%;
+  right: 10%;
 }
-.my-1{
+.my-1 {
   /* background-color: red;
   display: flex;
   margin-right: 1000px; */
   display: none;
 }
-.announcement_delete{
+.announcement_delete {
   width: 25%;
   height: 10vh;
   border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -104,15 +105,15 @@ flex-direction: column;
   z-index: 2;
   color: white;
   font-size: 18px;
-opacity: 80%;
+  opacity: 80%;
 }
 .announcement_delete button {
   width: 60px;
   height: 20px;
 }
-.announcement_actions-edit{
+.announcement_actions-edit {
   padding: 5px;
 }
-.announcement_actions-delete{
+.announcement_actions-delete {
   padding: 5px;
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './loginPage.css';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -31,9 +33,8 @@ function LoginPage() {
     }
   };
 
-  
   useEffect(() => {
-    if (sessionStorage.getItem('token')) sessionStorage.removeItem('token')
+    if (sessionStorage.getItem('token')) sessionStorage.removeItem('token');
   });
 
   return (
@@ -59,12 +60,7 @@ function LoginPage() {
           {error && <p className="error">{error}</p>}
           <p className="message">
             Not registered?{' '}
-            <a
-              href="#"
-              onClick={() =>
-                (window.location.href = 'http://localhost:3000/register')
-              }
-            >
+            <a href="#" onClick={() => navigate('/register')}>
               Create an account
             </a>
           </p>
